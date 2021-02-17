@@ -127,7 +127,7 @@ workflows:
                   - staging
                   - master
         - prettier:
-            rrequires:
+            requires:
               - build
               filters:
                 branches:
