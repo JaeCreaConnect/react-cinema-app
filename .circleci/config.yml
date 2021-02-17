@@ -130,7 +130,7 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Branch*:\n$(date + '%m/%d/%Y %T')",
+                      "text": "*When*:\n$(date + '%m/%d/%Y %T')",
                     },
                     {
                       "type": "mrkdwn",
