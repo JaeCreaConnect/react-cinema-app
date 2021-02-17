@@ -129,12 +129,12 @@ workflows:
         - prettier:
             requires:
               - build
-              filters:
-                branches:
-                  only:
-                    - dev
-                    - staging
-                    - master
+            filters:
+              branches:
+                only:
+                  - dev
+                  - staging
+                  - master
         - deploy-to-aws-s3:
             requires:
               - prettier
