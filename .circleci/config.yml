@@ -238,10 +238,10 @@ jobs:
 
   terraform-destroy:
     executor: terraform-executor
-      steps:
-        - checkout
-        - *show-current-branch-name
-        - run:
+    steps:
+      - checkout
+      - *show-current-branch-name
+      - run:
           name: Terraform Destroy
           command: |
             cd artifacts/infrastructure/
