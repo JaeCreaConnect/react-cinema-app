@@ -63,6 +63,9 @@ jobs:
       - *restore-cache
       - *install-dependencies
       - *save-cache
+      - run:
+          name: Copy Infrastructure Folder
+          command: cp -r infrastructure artifacts/infrastructure
 
   linting:
     executor: app-executor
@@ -233,18 +236,18 @@ jobs:
               ]
             }
 
-    terraform-destroy:
-      executor: terraform-executor
+  terraform-destroy:
+    executor: terraform-executor
       steps:
         - checkout
         - *show-current-branch-name
         - run:
-            name: Terraform Destroy
-            command: |
-              cd artifacts/infrastructure/
-              terraform init
-              terraform workspace select ${CIRCLE_BRANCH} || terraform workspace new ${CIRCLE_BRANCH}
-              terraform destroy --auto-approve
+          name: Terraform Destroy
+          command: |
+            cd artifacts/infrastructure/
+            terraform init
+            terraform workspace select ${CIRCLE_BRANCH} || terraform workspace new ${CIRCLE_BRANCH}
+            terraform destroy --auto-approve
 
 workflows:
     build_and_deploy:
