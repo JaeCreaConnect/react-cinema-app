@@ -276,28 +276,28 @@ workflows:
                   - dev
                   - staging
                   - master
-        - terraform-validate:
-            requires:
-                - linting
-                - prettier
-            filters:
-              branches:
-                only:
-                  - dev
-                  - staging
-                  - master
-        - terraform-plan-and-apply:
-            requires:
-              - terraform-validate
-            filters:
-              branches:
-                only:
-                  - dev
-                  - staging
-                  - master
+#        - terraform-validate:
+#            requires:
+#                - linting
+#                - prettier
+#            filters:
+#              branches:
+#                only:
+#                  - dev
+#                  - staging
+#                  - master
+#        - terraform-plan-and-apply:
+#            requires:
+#              - terraform-validate
+#            filters:
+#              branches:
+#                only:
+#                  - dev
+#                  - staging
+#                  - master
         - deploy-to-aws-s3:
             requires:
-              - terraform-plan-and-apply
+              - prettier
             filters:
               branches:
                 only:
@@ -322,16 +322,16 @@ workflows:
                   - dev
                   - staging
                   - master
-        - hold:
-            type: approval
-            requires:
-              - deploy-to-aws-cloudfront
-        - terraform-destroy:
-            requires:
-              - hold
-            filters:
-              branches:
-                only:
-                  - dev
-                  - staging
-                  - master
+#        - hold:
+#            type: approval
+#            requires:
+#              - deploy-to-aws-cloudfront
+#        - terraform-destroy:
+#            requires:
+#              - hold
+#            filters:
+#              branches:
+#                only:
+#                  - dev
+#                  - staging
+#                  - master
