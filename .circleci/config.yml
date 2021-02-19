@@ -169,9 +169,9 @@ jobs:
               aws cloudfront create-invalidation --distribution-id ${CINEMA_DEV_DISTRIBUTION_ID} --paths /\*
             elif [ "${CIRCLE_BRANCH}" == "staging"  ]
             then
-              aws cloudfront create-invalidation --distribution-id ${CINEMA_PROD_DISTRIBUTION_ID} --paths /\*
+              aws cloudfront create-invalidation --distribution-id ${CINEMA_STAGING_DISTRIBUTION_ID} --paths /\*
             else
-              aws cloudfront create-invalidation --distribution-id ${CREA_DEV_DISTRIBUTION_ID} --paths /\*
+              aws cloudfront create-invalidation --distribution-id ${CINEMA_PROD_DISTRIBUTION_ID} --paths /\*
             fi
 
   notify-via-slack:
