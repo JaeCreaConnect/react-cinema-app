@@ -164,7 +164,7 @@ jobs:
             aws configure set preview.cloudfront true
             if [ "${CIRCLE_BRANCH}" == "master" ]
             then
-              aws cloudfront create-invalidation --distribution-id ${CINEMA_PROD_DISTR_ID}} --paths /\*
+              aws cloudfront create-invalidation --distribution-id ${CINEMA_MASTER_DISTR_ID}} --paths /\*
             elif [ "${CIRCLE_BRANCH}" == "staging"  ]
             then
               aws cloudfront create-invalidation --distribution-id ${CINEMA_STAGING_DISTR_ID} --paths /\*
