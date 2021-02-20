@@ -11,10 +11,10 @@ executors:
     docker:
       - image: 'cibuilds/base:latest'
 
-  terraform-executor:
-    docker:
-      - image: hashicorp/terraform:latest
-    resource_class: small
+#  terraform-executor:
+#    docker:
+#      - image: hashicorp/terraform:latest
+#    resource_class: small
 
 aliases:
   - &show-current-branch-name
@@ -29,9 +29,7 @@ aliases:
   - &install-dependencies
     run:
       name: Install dependencies
-      command: |
-        mkdir -p artifacts
-        yarn install
+      command: yarn install
   - &save-cache
     save_cache:
       paths:
@@ -166,12 +164,12 @@ jobs:
             aws configure set preview.cloudfront true
             if [ "${CIRCLE_BRANCH}" == "master" ]
             then
-              aws cloudfront create-invalidation --distribution-id ${CINEMA_DEV_DISTRIBUTION_ID} --paths /\*
+              aws cloudfront create-invalidation --distribution-id ${CINEMA_DEV_DISTR_ID} --paths /\*
             elif [ "${CIRCLE_BRANCH}" == "staging"  ]
             then
-              aws cloudfront create-invalidation --distribution-id ${CINEMA_STAGING_DISTRIBUTION_ID} --paths /\*
+              aws cloudfront create-invalidation --distribution-id ${CINEMA_STAGING_DISTR_ID} --paths /\*
             else
-              aws cloudfront create-invalidation --distribution-id ${CINEMA_PROD_DISTRIBUTION_ID} --paths /\*
+              aws cloudfront create-invalidation --distribution-id ${CINEMA_PROD_DISTR_ID} --paths /\*
             fi
 
   notify-via-slack:
