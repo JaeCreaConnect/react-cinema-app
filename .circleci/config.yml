@@ -231,7 +231,6 @@ jobs:
                 }
               ]
             }
-
 #  terraform-destroy:
 #    executor: terraform-executor
 #    steps:
